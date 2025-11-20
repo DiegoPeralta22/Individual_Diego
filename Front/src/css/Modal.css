@@ -1,0 +1,137 @@
+/* ============================================
+   ESTILOS DEL MODAL - Modal.css
+   ============================================ */
+
+.dp-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.dp-modal {
+  background: #020617;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  width: 640px;
+  max-width: 95vw;
+  color: #f9fafb;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.9);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.dp-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px 8px;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.dp-modal-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.dp-close-btn {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.dp-modal-body {
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+}
+
+.dp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dp-field label {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.dp-input,
+.dp-input-date {
+  border-radius: 9px;
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  padding: 7px 9px;
+  font-size: 14px;
+  background: #020617;
+  color: #f9fafb;
+}
+
+.dp-input:focus,
+.dp-input-date:focus {
+  outline: none;
+  border-color: rgba(129, 140, 248, 0.9);
+  box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.6);
+}
+
+/* 👉 Forzar que el input date se vea con fondo oscuro pero ícono blanco */
+.dp-input-date {
+  color-scheme: dark;
+}
+
+/* Icono del calendario en blanco */
+.dp-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* Footer */
+.dp-modal-footer {
+  padding: 12px 18px 14px;
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dp-btn-modal {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 7px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.dp-btn-secondary {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  border-color: rgba(148, 163, 184, 0.7);
+}
+
+.dp-btn-secondary:hover {
+  background: #111827;
+}
+
+.dp-btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.45);
+}
+
+.dp-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6);
+}
+
+@media (max-width: 600px) {
+  .dp-modal-body {
+    grid-template-columns: 1fr;
+  }
+}
