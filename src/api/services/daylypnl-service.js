@@ -1,9 +1,9 @@
 // src/api/services/dailypnl-service.js
 
-// ======================= MODELO MONGO =======================
+//  MODELO MONGO
 const DailyPnl = require('../models/mongodb/dailypnl');
+//import bitacorra
 
-// ======================= BITÁCORA / RESPUESTAS =======================
 const {
   BITACORA,
   DATA,
@@ -12,17 +12,7 @@ const {
   FAIL,
 } = require('../../middlewares/respPWA.handler');
 
-// ======================= HELPERS GENERALES =======================
-
-/**
- * Construye filtro para Mongo desde query
- * Soporta:
- *  - account
- *  - date
- *  - from (fecha inicio)
- *  - to (fecha fin)
- *  - active (true/false) opcional
- */
+//  filtro
 function buildFilter(q = {}) {
   const f = {};
 
@@ -54,28 +44,17 @@ function buildFilter(q = {}) {
 // Helpers de fecha/hora
 const today = () => new Date().toISOString().slice(0, 10);
 
-// ============================================================
-//                    Dispatcher (acción CRUD)
-// ============================================================
+//                   CRRRUUUUDDD
 
-/**
- * Endpoint acción:
- *   POST /api/dailypnls/crud?ProcessType=...&DBServer=mongodb
- *
- * Query:
- *   ProcessType, DBServer, LoggedUser, account, date, from, to...
- *
- * Body:
- *   { data: { ... } }  ó  { data: [ {...}, {...} ] }
- */
 async function crudDailypnl(req) {
   let bitacora = BITACORA();
   let data = DATA();
 
   const query = req.query || {};
   const body = req.body || {};
-
+//ACCIÓN
   const ProcessType = String(query.ProcessType || '').trim();
+  //CUANDO TENGA AZURE 
   const DBServer = String(query.DBServer || 'mongodb').trim();
   const LoggedUser = String(query.LoggedUser || 'SYSTEM').trim();
 
@@ -114,7 +93,7 @@ async function crudDailypnl(req) {
         break;
       }
 
-      // 👉 ACTIVO / INACTIVO (borrado lógico)
+      // BORRADOLOGICO 
       case 'updateactive': {
         bitacora = await UpdateActiveDailyPnlMethod(bitacora, params, db);
         break;
@@ -154,11 +133,10 @@ async function crudDailypnl(req) {
   }
 }
 
-// ============================================================
-//                    MÉTODOS LOCALES
-// ============================================================
 
-// ========== GET (GetAll / GetSome / GetById) ==========
+//                    MÉTODOS LOCALES
+
+// GET (GetAll / GetSome / GetById)
 async function GetDailyPnlMethod(bitacora, options = {}, db, PT) {
   const { query } = options;
   const data = DATA();
@@ -496,7 +474,7 @@ async function DeleteHardDailyPnlMethod(bitacora, options = {}, db) {
   return await DeleteOneDailyPnlMethod(bitacora, options, db);
 }
 
-// ============================================================
+
 //                    EXPORTS
 // ============================================================
 module.exports = {

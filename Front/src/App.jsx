@@ -42,7 +42,7 @@ export default function App() {
         }
       );
 
-      // Ajusta esto a tu bitácora. En tus respuestas anteriores GetAll venía así:
+   //BIT
       const list = res?.data?.data?.[0]?.dataRes || [];
 
       const mapped = list.map((doc) => ({
@@ -182,8 +182,8 @@ export default function App() {
         active: !!value,
       };
 
-      // Este ProcessType asume que en el backend tienes algo como UpdateActive
-      // que sólo cambia el campo "active". Si lo nombraste diferente, cambia aquí.
+      // Este ProcessType UpdateActive
+
       await axios.post(
         API_URL,
         { data: payload },
@@ -203,7 +203,7 @@ export default function App() {
     }
   };
 
-  // ================== RENDER ==================
+  // ================== diseñooooo ==================
   return (
     <div className="app">
       <header className="app-header">

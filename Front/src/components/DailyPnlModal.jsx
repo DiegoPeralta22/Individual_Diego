@@ -3,12 +3,13 @@ import React from "react";
 import "../css/Modal.css"; // ajusta la ruta si tu Modal.css está en otra carpeta
 
 export default function DailyPnlModal(props) {
-  // Aceptamos varios nombres de props para no romper nada
+  //acepta varios prop 
   const isModalOpen =
     props.isOpen ?? props.isModalOpen ?? props.open ?? props.visible ?? false;
 
+    //crea modelo 
   const mode = props.mode ?? props.modalMode ?? "edit";
-
+//formulario
   const form =
     props.form ?? props.formData ?? props.data ?? {
       account: "",
@@ -16,13 +17,13 @@ export default function DailyPnlModal(props) {
       realized: "",
       unrealized: "",
     };
-
+//escribir y cambio
   const setForm = props.setForm ?? props.setFormData ?? (() => {});
   const onClose = props.onClose ?? props.onCancel ?? (() => {});
   const onSave = props.onSave ?? props.onSubmit ?? (() => {});
 
   if (!isModalOpen) return null;
-
+//funcion para manejar cambiaos
   const handleChange = (field) => (e) => {
     const value = e.target.value;
     setForm((prev) => ({

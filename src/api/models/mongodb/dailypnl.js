@@ -6,56 +6,59 @@ const mongoose = require('mongoose');
 // Declara esquema
 const DailyPnlSchema = new mongoose.Schema(
   {
-    // Cuenta o portafolio
+    // Cuenta 
     account: {
       type: String,
       required: true,
       trim: true,
     },
 
-    // Fecha contable (solo fecha)
+    //solo fecha
     date: {
       type: Date,
       required: true,
     },
 
-    // PnL realizado del día
+    //   del día
     realized: {
       type: Number,
       default: 0,
     },
 
-    // PnL no realizado (mark-to-market)
+    //  no realizado 
     unrealized: {
       type: Number,
       default: 0,
     },
 
-    // 👉 Borrado lógico / estado del registro
+    //  Borrado lógico
     active: {
       type: Boolean,
       default: true,
     },
 
-    // Auditoría básica
+    // es pal llenado automatico al crear siuu
     createdAt: {
       type: Date,
       default: Date.now,
     },
+    //ojo animal recuerda lo hace el middleware 
     updatedAt: {
       type: Date,
     },
   },
   {
-    collection: 'Datos', // colección que ya tienes en DailyPnls
+    //colección que ya se creo siuu
+    collection: 'Datos', 
+    //algo de mongo pa las colecciones internas 
     versionKey: false,
   }
 );
 
-// Índice único por (account, date)
+// Índice único account y date
 DailyPnlSchema.index({ account: 1, date: 1 }, { unique: true });
 
-// Middleware: actualizar updatedAt en save
+// aactualizar automaticamente el update
 DailyPnlSchema.pre('save', function (next) {
   this.updatedAt = new Date();
   next();

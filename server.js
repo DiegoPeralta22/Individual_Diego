@@ -15,8 +15,9 @@ async function startServer() {
 
   const app = express();
   app.use(express.json());
+  //cors pal fronted
   app.use(cors());
-
+//para ver si laAPI EN GENERAL SIRVE 
   app.get('/api/health', (req, res) => {
     res.json({
       ok: true,
@@ -25,9 +26,11 @@ async function startServer() {
     });
   });
 
-  // 👉 Aquí el endpoint enterprise
+  // HACE Que todo lo que use esto y con el /algo jale
   app.use('/api/dailypnls', dailypnlRouter);
 
+
+  //arranque del servidor 
   const PORT = process.env.PORT || 3333;
   app.listen(PORT, () => {
     console.log(`🚀 Servidor DailyPnls corriendo en http://localhost:${PORT}`);
